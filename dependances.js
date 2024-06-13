@@ -1,4 +1,4 @@
-let workInLocal = true;
+let workInLocal = false;
 let version = 'v2.0';
 let host;
 
