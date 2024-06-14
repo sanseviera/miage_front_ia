@@ -3,7 +3,6 @@ export default class Content {
         return ` 
         <div class="centerBox">
             <form id="analyzeForm" method="post" enctype="multipart/form-data">
-                <bt-drag-and-drop></bt-drag-and-drop>
                 <textarea class="textInput" name="content" placeholder="Entrez votre texte ici..."></textarea>
                 <input type="file" id="file" name="file">
                 <select id="analysis_type" name="analysis_type">
@@ -18,9 +17,9 @@ export default class Content {
         <div id="resultPopup" class="popup">
             <div class="popup-content">
                 <span class="close">&times;</span>
-                <h2>Résultat du Diagnostic</h2>
-                <div id="analyzedContent"></div>
-                <div id="diagnosisResult"></div>
+                <h2>Résultat || Réponse :</h2>
+                <div class="question" id="analyzedContent"></div>
+                <div class="response" id="diagnosisResult"></div>
             </div>
         </div>
         `;
