@@ -1,4 +1,4 @@
-Projet Big Data :
+Projet Intelligence Artificielle :
 =================
 
 ## Table des Matières
@@ -64,6 +64,11 @@ Liens Git :
 ### Dépendances
 
 - bt_composant
+- express
+- multer
+- openai
+- cors 
+- requirements.txt pour les dépendances du server flask
 
 ## Installation :
 Pour utiliser ce projet, vous aurez besoin de :
