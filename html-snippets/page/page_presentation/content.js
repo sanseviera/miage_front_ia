@@ -63,11 +63,11 @@ export default class Content{
                     </div>
                     <div>
                         <h3>Date de fin</h3>
-                            <p>-</p>
+                            <p>15 juin 2024</p>
                     </div>
                     <div>
                     <h3>Technologies</h3>
-                    <p>HTML, CSS, JavaScript</p>
+                    <p>HTML, CSS, JavaScript, Flask, Python, NodeJS</p>
                 </div>
             </div>
         </div>
