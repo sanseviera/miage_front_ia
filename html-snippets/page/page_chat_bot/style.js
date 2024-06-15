@@ -68,30 +68,55 @@ export default class Style{
         width: calc( 100vw - 244px );
         position: relative;
         background-color: #343541;
-        padding-left: 20px;
-        padding-right: 20px;
+        
         overflow-x: hidden;
     }
 
     .top-section {
 
         display: flex;
-        flex: 1; 
-        flex-direction: column;
         width: 100%;
+        position: relative;
+        flex-grow: 1;
+        flex-direction: column;
+        overflow-y: hidden;
+        overflow-x: hidden;
+      
+    }
+
+    .top-section-container {
+        display: flex;
+        flex-grow: 1; 
+        flex-direction: column;
+        height: 100%;
         overflow-y: auto;
         overflow-x: hidden;
+        padding-left: 20px;
+        padding-right: 20px;
     }
     
     .bottom-section {
         display: flex;
         flex-shrink: 0;
+        bottom: 0; /* Positionne le bas de la section en bas de la fenêtre */
+        margin-bottom: 20px;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        background-color: #11111100;
         width: 100%;
     }
 
+    .fondu{
+        position: absolute;
+        bottom: 0;
+        height:40px;
+        width:100%;
+        background-color: #11111100;
+        background: linear-gradient(#11111100, #343541);
+
+    }
+    
     .dropbtn {
         background-color: #eff1f0;
         color: black;
@@ -163,6 +188,58 @@ export default class Style{
     input:focus {
         outline: none;
     }
+
+    .container-message-conversation {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+
+    }
+
+    .container-message-conversation-robot {
+      
+        justify-content: flex-start;
+
+    }
+
+    .container-message-conversation-human {
+ 
+        justify-content: flex-end;
+
+    }
+
+    .container-message-icon {
+
+        background-color: #ccc;
+        border-radius: 100%;
+        height: 70px;
+        width: 70px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin: 10px;
+    }
+
+
+
+
+    .container-message {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        max-width: 650px;
+        overflow: hidden;
+    }
+
+
+
     
     .input-container {
         align-items: center;
@@ -180,12 +257,12 @@ export default class Style{
         position: relative;
         margin-left: auto;
         cursor: pointer;
-        background-image: url("./data/send.svg"); /* Corrigez le chemin de l'image */
-        background-size: cover; /* Ajuste l'image de fond pour couvrir entièrement le bouton */
-        background-position: center; /* Centre l'image de fond */
-        background-repeat: no-repeat; /* Empêche la répétition de l'image de fond */
-        height: 40px;
-        width: 40px;
+        background-image: url("./data/send.svg"); 
+        background-size: cover;
+        background-position: center; 
+        background-repeat: no-repeat; 
+        height: 30px;
+        width: 30px;
     }
 
     .input-container #piece {
@@ -196,27 +273,66 @@ export default class Style{
         background-size: cover; /* Ajuste l'image de fond pour couvrir entièrement le bouton */
         background-position: center; /* Centre l'image de fond */
         background-repeat: no-repeat; /* Empêche la répétition de l'image de fond */
-        height: 40px;
-        width: 40px;
+        height: 30px;
+        width: 30px;
+    }
+
+    .chat-input {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        resize: none;
+        overflow-y: auto; /* Ajoute une barre de défilement vertical si nécessaire */
+        font-size: 14px;
+        line-height: 1.5;
+        color: #333;
+    }
+
+    .divSubmit{
+        display: flex;
+    }
+
+    .divSubmitForm{
+        display: flex;
+        flex-grow: 1;
+        padding-left : 10px;
+        padding-right : 10px;
     }
 
     #fileInput{
         display: none;
       }
       #icon{
-        height: 40px;
-        width: 40px;
+        height: 30px;
+        width: 30px;
         cursor: pointer;
       }
 
+      .triangle-left {
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-right: 10px solid white;
+        border-bottom: 5px solid transparent;
 
+      }
+
+    .triangle-right {
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-left: 10px solid white;
+        border-bottom: 5px solid transparent;
+
+      }
     
     .output {
         display: flex;
+        flex-grow: 1;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        width: 100%;
         padding: 10px;
     }
 
@@ -249,9 +365,15 @@ export default class Style{
     }
     
     .image-container {
-        border-radius: 15px;
         overflow: hidden;
         box-shadow: rgb(38, 57, 77) 0 20px 30px -10px;
+    }
+
+    .myImage{
+        border-radius: 10px;
+        width: 100%;
+        max-width:300px; 
+        height: auto;
     }
     
     
@@ -265,12 +387,10 @@ export default class Style{
     
     .input-container input {
         border: none;
-        flex-grow: 1;
-        margin-right: 10px;
+        flex-grow: 1;    
     }
     
     .input-container button {
-        background-color: rgb(39, 42, 51);
         color: white;
         border: none;
         padding: 5px 10px;
@@ -309,7 +429,6 @@ export default class Style{
     .input-container .file-upload-label {
         order: -1; /* This ensures that the label is the first item in the flex container */
         color: white;
-        background-color: rgb(39, 42, 51); /* Icon background color */
         padding: 5px 10px;
         border-radius: 5px;
     }

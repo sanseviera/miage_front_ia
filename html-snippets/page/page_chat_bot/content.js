@@ -18,11 +18,15 @@ export default class Content{
         </div>  
 
         <div class="top-section">
-            <h1>MyGPT</h1>
-            <div class="output"></div>
+            <div class="top-section-container">
+                <h1>MyGPT</h1>
+                <div class="output"></div>
+                <div class="fondu"> </div>
+            </div>
         </div>
 
         <div class="bottom-section">
+
         <div class="tool">
             <div class="dropdown">
                 Couleur
@@ -58,13 +62,19 @@ export default class Content{
                     <img id="icon" src="./data/attachment.svg">
                 </label>
                 <input id="fileInput" type="file">
-                <input type="text" id="chat-input" placeholder="Entrez votre message...">
-                <button  id="submit"></button>
+                <div class="divSubmitForm">
+                    <textArea  class="chat-input" type="text" id="chat-input" placeholder="Entrez votre message..."> </textArea>
+                </div>
+                <div class="divSubmit">
+                    <button  id="submit"></button>
+                </div>
                 <div id="file-name-display" class="file_load" style="display:none"></div> 
+
             </div> 
-            
+            <p class="info">My GPT Apr 27 version, un essai pour mon projet...</p>
+
         </div>
-        <p class="info">My GPT Apr 27 version, un essai pour mon projet...</p>
+        
         
     </section>
 

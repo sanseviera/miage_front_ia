@@ -13,34 +13,74 @@ class Page extends HTMLElement {
         return [];
     }
 
+
+    resetSizeTextAera(){
+        const textarea = this.shadow.querySelector('.chat-input');
+        textarea.style.height = '';
+    }
+
+  
     /*
     *   Méthode pour mettre à jour le contenu principal
     */
     updateContent() {
         let matriceOfMessagesToString = "";
                     for (let i = 0; i < this.matriceOfMessages[this.positionOfMatriceOfMessages].length; i++) {
-                        if(this.matriceOfMessages[this.positionOfMatriceOfMessages][i]["type"] === "image"){
+                        if(this.matriceOfMessages[this.positionOfMatriceOfMessages][i]["type"] === "image" && this.matriceOfMessages[this.positionOfMatriceOfMessages][i]["author"] === "IA"){
+                            matriceOfMessagesToString = `
+                                ${matriceOfMessagesToString} 
+                                <div class="container-message-conversation container-message-conversation-robot">
+                                    <div class="container-message-icon">
+                                        <img src="./data/robot.svg" alt="robot" style="width: 50px; height: 50px;" />
+                                    </div>
+                                    <div class="triangle-left"></div>
+                                        <div class="container-message">
+                                            <div class="image-container">
+                                                <img class="myImage" src="${this.matriceOfMessages[this.positionOfMatriceOfMessages][i]['content']}" alt="image" />
+                                                <div>
+                                                    <button class="image-button">Open</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                `;
+                          
+                        }
+                        else if (this.matriceOfMessages[this.positionOfMatriceOfMessages][i]["type"] === "text" && this.matriceOfMessages[this.positionOfMatriceOfMessages][i]["author"] === "IA"){
                             matriceOfMessagesToString = `${matriceOfMessagesToString} 
-                            <div class="image-container">
-                                <img src="${this.matriceOfMessages[this.positionOfMatriceOfMessages][i]["content"]}" alt="image" style="width: 100%; max-width:300px; height: auto;"/>
-                                <div>
-                                    <button class="image-buttom">Open</button>
+                            <div class= "container-message-conversation container-message-conversation-robot ">
+                                <div class="container-message-icon">
+                                    <img src="./data/robot.svg" alt="robot" style="width: 50px; height: 50px;"/>
+                                </div>
+                                <div class="triangle-left"></div>
+                                <div class="container-message">
+                                    <p>
+                                        ${this.matriceOfMessages[this.positionOfMatriceOfMessages][i]["content"]}
+                                    </p>
                                 </div>
                             </div>
                             `;
-                          
                         }
-                        else{
+                        else if (this.matriceOfMessages[this.positionOfMatriceOfMessages][i]["type"] === "text" && this.matriceOfMessages[this.positionOfMatriceOfMessages][i]["author"] === "human"){
                             matriceOfMessagesToString = `${matriceOfMessagesToString} 
-                            <p>
-                                ${this.matriceOfMessages[this.positionOfMatriceOfMessages][i]["content"]}
-                            </p>
+                            <div class= "container-message-conversation container-message-conversation-human ">
+                                <div class="container-message">
+                                    <p>
+                                        ${this.matriceOfMessages[this.positionOfMatriceOfMessages][i]["content"]}
+                                    </p>
+                                </div>
+                                <div class="triangle-right"></div>
+                                <div class="container-message-icon">
+                                    <img src="./data/human.svg" alt="human" style="width: 50px; height: 50px;"/>
+                                </div>
+                            </div>
                             `;
                         }
                     }
                     this.shadow.querySelector(".output").innerHTML = matriceOfMessagesToString;
                     // Ajouter un event listener pour le bouton de téléchargement
-                    this.shadow.querySelectorAll(".image-buttom").forEach((element) => {
+                    this.shadow.querySelectorAll(".image-button").forEach((element) => {
                         element.addEventListener('click', (e) => {
                             let url = e.target.parentElement.parentElement.querySelector("img").src;
                             window.open(url, '_blank');
@@ -74,6 +114,20 @@ class Page extends HTMLElement {
       
 
     connectedCallback() {
+        // Écoute des événements input pour ajuster la hauteur
+        this.shadow.querySelector('.chat-input').addEventListener('input', function() {
+            const lineHeight = parseInt(getComputedStyle(this).lineHeight);
+            const maxHeight = lineHeight * 5;
+            this.style.height = 'auto';
+            if (this.scrollHeight > maxHeight) {
+                this.style.height = maxHeight + 'px';
+                this.style.overflowY = 'scroll'; // Ajoute une barre de défilement si nécessaire
+            } else {
+                this.style.height = this.scrollHeight + 'px';
+                this.style.overflowY = 'hidden'; // Masque la barre de défilement si le contenu n'est pas assez grand
+            }
+        });
+
 
         /*
         *  Event listener pour le bouton de téléchargement de fichier
@@ -139,7 +193,7 @@ class Page extends HTMLElement {
 
         if(contentForm !== ""){// on verifie que le champ n'est pas vide sinon on ne fait rien
 
-            this.matriceOfMessages[this.positionOfMatriceOfMessages].push({"content":contentForm,"type":"text"}); // add the message to the matrice
+            this.matriceOfMessages[this.positionOfMatriceOfMessages].push({"author":"human","content":contentForm,"type":"text"}); // add the message to the matrice
 
 
             if (contentForm.startsWith("\\image ")) {
@@ -162,7 +216,7 @@ class Page extends HTMLElement {
             formData.append('prompt', contentForm);
 
             this.shadow.querySelector(".popup").style.display = "flex"; // afficher le loader
-            fetch(`http://localhost:3001/${route}`, {
+            fetch(`https://backend-projet-ia-m1miage-2023-2024.onrender.com/${route}`, {
                 method: 'POST',
                 body: formData,
             })
@@ -184,15 +238,16 @@ class Page extends HTMLElement {
                 }
 
                     tmp.value = ""; // clear the input
+                    this.resetSizeTextAera(); // reset the size of the text area
                     if (route === "image") {
-                        this.matriceOfMessages[this.positionOfMatriceOfMessages].push({"content":data.data[0].url,"type":"image"}); // add the message to the matrice
+                        this.matriceOfMessages[this.positionOfMatriceOfMessages].push({"author":"IA","content":data.data[0].url,"type":"image"}); // add the message to the matrice
                     }
                     else{
-                        this.matriceOfMessages[this.positionOfMatriceOfMessages].push({"content":data.choices[0].message.content,"type":"chat"}); // add the message to the matrice
+                        this.matriceOfMessages[this.positionOfMatriceOfMessages].push({"author":"IA","content":data.choices[0].message.content,"type":"text"}); // add the message to the matrice
                     }
                     this.updateContent(); // update the content
                     // les deux lignes suivantes permettent de scroller vers le bas automatiquement pour voir le dernier message ajouté
-                    var div = this.shadow.querySelector('.top-section');
+                    var div = this.shadow.querySelector('.top-section-container');
                     div.scrollTop = div.scrollHeight;
 
                     this.shadow.querySelector(".tool").style.display = "none";
