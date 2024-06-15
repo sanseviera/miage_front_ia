@@ -39,7 +39,7 @@ Au lieu de suivre les installation et lancer notre projet en local, nous vous pr
 
 Voici les liens utiles :
 
-* front déployé : http://127.0.0.1:5500/miage_front_ia/index.html#
+* front déployé : https://borreani.fr/miage_front_ia/
 
 * Back du serveur node.js déployé sur render : https://backend-projet-ia-m1miage-2023-2024.onrender.com
 
