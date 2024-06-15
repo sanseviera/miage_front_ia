@@ -63,8 +63,7 @@ Liens Git :
 
 ### Dépendances
 
--
--
+- bt_composant
 
 ## Installation :
 Pour utiliser ce projet, vous aurez besoin de :
