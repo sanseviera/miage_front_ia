@@ -64,7 +64,8 @@ class Page extends HTMLElement {
             console.log("Form data prepared for submission", formData); // Debugging message
 
             try {
-                const response = await fetch('http://127.0.0.1:5000/diagnose', {
+                //const response = await fetch('http://127.0.0.1:5000/diagnose', {
+                const response = await fetch('https://ia-diagnostic-comptable.onrender.com/diagnose', {
                     method: 'POST',
                     body: formData
                 });
