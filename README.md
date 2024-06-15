@@ -123,5 +123,10 @@ Si vous avez besoin d'aide ou si vous avez des questions, veuillez nous contacte
 - borreani.theo@etu.unice.fr
 
 ## Ressources :
-Python  
-Render
+- https://platform.openai.com/docs/guides/fine-tuning/create-a-fine-tuned-model
+- https://cookbook.openai.com/examples/how_to_finetune_chat_models#check-job-status
+- https://cookbook.openai.com/
+- https://cookbook.openai.com/examples/question_answering_using_embeddings
+- https://platform.openai.com/docs/assistants/how-it-works
+- https://render.com/
+- Python  
