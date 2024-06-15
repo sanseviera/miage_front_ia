@@ -162,7 +162,6 @@ class Page extends HTMLElement {
             formData.append('prompt', contentForm);
 
             this.shadow.querySelector(".popup").style.display = "flex"; // afficher le loader
-            //fetch(`http://localhost:3001/${route}`, {
             fetch(`https://backend-projet-ia-m1miage-2023-2024.onrender.com/${route}`, {
                 method: 'POST',
                 body: formData,
