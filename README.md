@@ -39,11 +39,19 @@ Au lieu de suivre les installation et lancer notre projet en local, nous vous pr
 
 Voici les liens utiles :
 
-front déployé : http://127.0.0.1:5500/miage_front_ia/index.html#
+* front déployé : http://127.0.0.1:5500/miage_front_ia/index.html#
 
-Back du serveur node.js déployé sur render : https://backend-projet-ia-m1miage-2023-2024.onrender.com
+* Back du serveur node.js déployé sur render : https://backend-projet-ia-m1miage-2023-2024.onrender.com
 
-Back du serveur Python Flask déployé sur render : https://ia-diagnostic-comptable.onrender.com
+* Back du serveur Python Flask déployé sur render : https://ia-diagnostic-comptable.onrender.com
+
+Liens Git :
+
+* front : https://github.com/sanseviera/miage_front_ia.git
+
+* Back du serveur node.js : https://github.com/dioprawane/backend_projet_ia_M1MIAGE_2023_2024.git
+
+* Back du serveur Python Flask : https://github.com/dioprawane/ia_diagnostic_comptable.git
 
 
 ## Technologies Utilisées
